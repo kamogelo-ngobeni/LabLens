@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>MOB216D Semester Test 2 - Interactive Practice Paper</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #eef2f5;
+            color: #1e2a3e;
+            padding: 20px;
+            line-height: 1.5;
+        }
+
+        .paper {
+            max-width: 1100px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 28px;
+            box-shadow: 0 25px 40px -12px rgba(0,0,0,0.2);
+            overflow: hidden;
+            padding: 24px 28px 48px;
+        }
+
+        .header {
+            text-align: center;
+            border-bottom: 2px solid #006C4C;
+            margin-bottom: 28px;
+            padding-bottom: 20px;
+        }
+
+        .header h1 {
+            font-size: 1.8rem;
+            color: #006C4C;
+        }
+
+        .header .meta {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            background: #f8fafc;
+            padding: 12px 20px;
+            border-radius: 20px;
+            margin-top: 16px;
+            font-weight: 500;
+        }
+
+        .section {
+            margin-bottom: 40px;
+            background: white;
+            border-radius: 24px;
+            border: 1px solid #e2edf2;
+            overflow: hidden;
+        }
+
+        .section-title {
+            background: #f0f9f4;
+            padding: 16px 24px;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #006C4C;
+            border-left: 6px solid #006C4C;
+        }
+
+        .question {
+            padding: 20px 24px;
+            border-bottom: 1px solid #e9eef3;
+        }
+
+        .question:last-child {
+            border-bottom: none;
+        }
+
+        .q-text {
+            font-weight: 700;
+            font-size: 1rem;
+            margin-bottom: 12px;
+            color: #0c4e6e;
+        }
+
+        .options {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin: 12px 0 12px 20px;
+        }
+
+        .option {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            cursor: pointer;
+        }
+
+        input[type="radio"] {
+            width: 18px;
+            height: 18px;
+            accent-color: #006C4C;
+        }
+
+        button.check-single {
+            background: #2563eb;
+            border: none;
+            padding: 6px 14px;
+            border-radius: 40px;
+            color: white;
+            font-weight: 600;
+            font-size: 0.75rem;
+            cursor: pointer;
+            margin-top: 10px;
+            transition: 0.1s;
+        }
+
+        button.check-single:hover {
+            background: #1d4ed8;
+        }
+
+        .feedback {
+            margin-top: 14px;
+            padding: 12px 16px;
+            border-radius: 18px;
+            background: #f1f5f9;
+            display: none;
+            font-size: 0.9rem;
+        }
+
+        .feedback.correct {
+            background: #dcfce7;
+            border-left: 5px solid #15803d;
+            color: #14532d;
+        }
+
+        .feedback.incorrect {
+            background: #fee2e2;
+            border-left: 5px solid #b91c1c;
+            color: #7f1a1a;
+        }
+
+        .code-block {
+            background: #0f172a;
+            color: #e2e8f0;
+            padding: 16px;
+            border-radius: 18px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.8rem;
+            overflow-x: auto;
+            margin: 12px 0;
+        }
+
+        textarea {
+            width: 100%;
+            background: #0f172a;
+            color: #f1f5f9;
+            font-family: monospace;
+            padding: 14px;
+            border-radius: 18px;
+            border: none;
+            margin: 12px 0;
+        }
+
+        .action-bar {
+            display: flex;
+            gap: 16px;
+            margin: 20px 0 10px;
+            flex-wrap: wrap;
+        }
+
+        .btn-primary {
+            background: #006C4C;
+            padding: 10px 24px;
+            border: none;
+            border-radius: 40px;
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .btn-secondary {
+            background: #475569;
+            padding: 10px 24px;
+            border: none;
+            border-radius: 40px;
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .results-summary {
+            background: #eef2ff;
+            border-radius: 24px;
+            padding: 20px;
+            margin-top: 24px;
+            text-align: center;
+            font-weight: bold;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+<div class="paper">
+    <div class="header">
+        <h1>MOB216D — Mobile Computing</h1>
+        <p><strong>Semester Test 2 — PRACTICE PAPER (65 marks)</strong></p>
+        <div class="meta">
+            <span>📖 Subject Code: MOB216D</span>
+            <span>⏱️ Time: 90 minutes</span>
+            <span>📝 Total: 65 marks</span>
+        </div>
+        <p style="margin-top: 12px; font-size: 0.85rem;">✅ Based on official scope & memo. Check each answer individually.</p>
+    </div>
+
+    <!-- Question 1 - MCQ (15 marks) -->
+    <div class="section">
+        <div class="section-title">📌 Question 1 (15 marks) — Kotlin Collection Fundamentals & Generics</div>
+        <div id="q1-container"></div>
+    </div>
+
+    <!-- Question 3 - Material Design (10 marks) -->
+    <div class="section">
+        <div class="section-title">🎨 Question 3 (10 marks) — Material Design with Compose</div>
+        <div id="q3-container"></div>
+    </div>
+
+    <!-- Question 4 - Architecture + Navigation (15 marks) -->
+    <div class="section">
+        <div class="section-title">🏗️ Question 4 (15 marks) — Architecture & Navigation</div>
+        <div id="q4-container"></div>
+    </div>
+
+    <!-- Question 2: Practical Coding (20 marks) -->
+    <div class="section">
+        <div class="section-title">⌨️ Question 2 (20 marks) — Practical: Student Results List</div>
+        <div class="question">
+            <div class="q-text">Create an Android Compose app to display a scrollable list of student results. Use the <code>StudentResult</code> data class, <code>ResultItem</code>, <code>ResultList</code> (LazyColumn), and set up MainActivity. Implement the missing parts in the skeleton below.</div>
+            <div class="code-block">
+                // Skeleton – implement all sections (2.1 to 2.4)<br>
+                data class StudentResult(val studentName: String, val subject: String, val mark: Int, val passed: Boolean = false)<br>
+                // TODO: sampleResults list (2.1)<br>
+                // TODO: ResultItem composable (2.2)<br>
+                // TODO: ResultList composable with LazyColumn (2.3)<br>
+                // TODO: MainActivity with heading + ResultList (2.4)
+            </div>
+            <textarea id="codingAnswer" rows="14" placeholder="Write your complete Kotlin code here (MainActivity.kt) ...&#10;Example:&#10;val sampleResults = listOf(...)&#10;@Composable fun ResultItem(result: StudentResult) { ... }&#10;@Composable fun ResultList(results: List&lt;StudentResult&gt;) { LazyColumn { items(results) { ... } } }&#10;class MainActivity : ComponentActivity() { override fun onCreate(...) { setContent { Column { Text(...); ResultList(...) } } } }"></textarea>
+            <button id="checkCodingBtn" class="check-single" style="background:#006C4C;">🔍 Check Coding Solution (2.1–2.4)</button>
+            <div id="codingFeedback" class="feedback"></div>
+        </div>
+    </div>
+
+    <!-- Question 5: Logic Errors (5 marks) -->
+    <div class="section">
+        <div class="section-title">🐞 Question 5 (5 marks) — Identify Logic Errors</div>
+        <div class="question">
+            <div class="q-text">Analyze the code below and identify TWO intentional logic errors. Describe each error and its impact.</div>
+            <div class="code-block">
+@Composable
+fun SchoolApp() {
+    val navController = rememberNavController()
+    NavHost(navController, startDestination = "home") {
+        composable("home") { HomeScreen(navController) }
+        composable("subject/MOB216D") { MOBScreen() }
+        composable("subject/MMD316D") { MMDScreen() }
+    }
+}
+
+@Composable
+fun HomeScreen(navController: NavHostController) {
+    var selectedSubject by remember { mutableStateOf("") }
+    Column {
+        Text("Choose your subject")
+        RadioButton(selected = selectedSubject == "MOB216D",
+                    onClick = { selectedSubject = "MMD316D" })  // ❌
+        Text("MOB216D")
+        RadioButton(selected = selectedSubject == "MMD316D",
+                    onClick = { selectedSubject = "MMD316D" })
+        Text("MMD316D")
+        Button(onClick = { navController.navigate(selectedSubject) }) {  // ❌
+            Text("Go to Subject")
+        }
+    }
+}
+            </div>
+            <div style="margin: 12px 0;">
+                <label style="font-weight:600;">Your answer (describe both errors):</label>
+                <textarea id="logicErrorsAnswer" rows="5" style="background:#fff; color:#0f172a; border:1px solid #cbd5e1; margin-top:8px;" placeholder="Error 1: ... Impact: ...&#10;Error 2: ... Impact: ..."></textarea>
+                <button id="checkLogicBtn" class="check-single" style="background:#8b5cf6; margin-top:8px;">✅ Check Logic Errors (Memo style)</button>
+                <div id="logicFeedback" class="feedback"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="action-bar">
+        <button id="checkAllBtn" class="btn-primary">📋 Check All Unanswered (MCQ/Theo)</button>
+        <button id="resetBtn" class="btn-secondary">⟳ Reset All Answers</button>
+    </div>
+    <div id="summaryArea" class="results-summary"></div>
+</div>
+
+<script>
+    // --------------------------------------------------------------
+    // Question 1 Data (15 items from the provided memo)
+    const q1Data = [
+        { id: "q1_1", text: "What keyword is used to define a singleton object in Kotlin?", options: ["A. class", "B. singleton", "C. object", "D. companion"], correct: "C", explanation: "object keyword creates a class with exactly one instance. No constructor needed." },
+        { id: "q1_2", text: "What is a companion object in Kotlin?", options: ["A. A separate class that exists alongside another class", "B. A singleton object defined inside a class, accessed via the outer class name", "C. An object that can only hold primitive types", "D. A class that automatically creates multiple instances"], correct: "B", explanation: "Companion object is a singleton inside a class; properties accessed via outer class name (e.g., Quiz.answered)." },
+        { id: "q1_3", text: "Which correctly defines a generic class in Kotlin?", options: ["A. class Box(T) { val item: T }", "B. class Box<T>(val item: T)", "C. class Box{T}(val item: T)", "D. class Box[T](val item: T)"], correct: "B", explanation: "Generic parameters use angle brackets <T>. Example: class Box<T>(val item: T)" },
+        { id: "q1_4", text: "Primary benefit of using an enum class instead of String constants?", options: ["A. Unlimited possible values", "B. Faster runtime", "C. Restrict variable to fixed set of values, prevents typos", "D. Automatically implements toString()"], correct: "C", explanation: "Enum classes define a limited set of values; compiler rejects invalid values, avoiding typos." },
+        { id: "q1_5", text: "Which statement about extension properties is TRUE?", options: ["A. Can store data in object's memory", "B. Only on primitive types", "C. Get-only, cannot store data (no backing field)", "D. Replace original class properties"], correct: "C", explanation: "Extension properties are get-only, compute a value, cannot store data (no backing field)." },
+        { id: "q1_6", text: "What does 'it' refer to inside a let() scope function?", options: ["A. Outer class instance", "B. The object that let() was called on", "C. Lambda return value", "D. New anonymous object"], correct: "B", explanation: "Inside let{}, 'it' is implicit name for the object the function was called on (e.g., question1.let { it.answer })." },
+        { id: "q1_7", text: "What happens when add() is called on a MutableList at full capacity?", options: ["A. Element discarded", "B. ArrayIndexOutOfBoundsException", "C. Internal array copied to larger array, element added", "D. First element removed to make space"], correct: "C", explanation: "MutableList grows automatically; internal array is copied into a new larger array transparently." },
+        { id: "q1_8", text: "Which function creates a read-only (immutable) Set?", options: ["A. mutableSetOf()", "B. arrayOf()", "C. listOf()", "D. setOf()"], correct: "D", explanation: "setOf() creates an immutable Set. MutableSet is modifiable." },
+        { id: "q1_9", text: "What does indexOf() return when element is NOT found in a List?", options: ["A. null", "B. 0", "C. -1", "D. throws exception"], correct: "C", explanation: "indexOf() returns -1 when element not found, else index >= 0." },
+        { id: "q1_10", text: "Which higher-order function calculates sum of all prices?", options: ["A. forEach()", "B. map()", "C. filter()", "D. fold()"], correct: "D", explanation: "fold() reduces a collection to a single value; e.g., list.fold(0.0) { total, item -> total + item.price }" },
+        { id: "q1_11", text: "What type does groupBy() return when applied to List<Cookie> grouped by Boolean?", options: ["A. List<Cookie>", "B. Set<Cookie>", "C. Map<Boolean, List<Cookie>>", "D. Pair<List<Cookie>, List<Cookie>>"], correct: "C", explanation: "groupBy returns a Map; key is lambda result, value is List of matching elements." },
+        { id: "q1_12", text: "Difference between map() and filter()?", options: ["A. map() reduces, filter() transforms", "B. map() transforms every element (same count), filter() keeps matching elements (same/fewer)", "C. both reduce size", "D. map() sorts, filter() groups"], correct: "B", explanation: "map returns same number of transformed elements; filter returns only those matching condition." },
+        { id: "q1_13", text: "String template: $it.name vs ${it.name}", options: ["A. Both identical", "B. $it.name correct, ${it.name} error", "C. ${it.name} correct, $it.name substitutes object reference", "D. neither works"], correct: "C", explanation: "${it.name} evaluates property; $it.name substitutes object reference and adds .name as literal." },
+        { id: "q1_14", text: "Access a value in MutableMap by key?", options: ["A. moons.get[\"Earth\"]", "B. moons[\"Earth\"] or moons.get(\"Earth\")", "C. moons.find(\"Earth\")", "D. moons.access(\"Earth\")"], correct: "B", explanation: "Map supports index operator or get(key) to retrieve value (or null)." },
+        { id: "q1_15", text: "True about a data class in Kotlin?", options: ["A. Can be abstract", "B. No constructor parameters needed", "C. Automatically generates equals(), hashCode(), toString(), copy()", "D. Cannot have generics"], correct: "C", explanation: "Data classes auto-generate toString, equals, hashCode, copy, componentN. Must have at least one property." }
+    ];
+
+    // Question 3 Data (10 items)
+    const q3Data = [
+        { id: "q3_1", text: "Which file defines and ASSIGNS color roles (primary, onPrimary, surface) in MaterialTheme?", options: ["A. Color.kt", "B. Shape.kt", "C. Theme.kt", "D. Type.kt"], correct: "C", explanation: "Theme.kt assigns color roles inside MaterialTheme(colorScheme = ...). Color.kt defines color values." },
+        { id: "q3_2", text: "What is the 'onPrimary' color role used for?", options: ["A. Main app background", "B. Text/icons on top of primary color", "C. Card surface color", "D. Secondary accent"], correct: "B", explanation: "'on' prefix indicates content (text/icons) displayed on top of that color (e.g., onPrimary = text on primary)." },
+        { id: "q3_3", text: "Where to define rounded corners (bottom-left & top-right) for all Cards? Card is which component size?", options: ["A. Color.kt; small", "B. Shape.kt medium property; Card = medium component", "C. Type.kt; large", "D. On each Card via Modifier.clip"], correct: "B", explanation: "Card is a MEDIUM component; set medium shape in Shape.kt to apply globally." },
+        { id: "q3_4", text: "What is TalkBack in Android?", options: ["A. Performance testing tool", "B. Screen reader with spoken feedback for visually impaired", "C. Reads developer logs aloud", "D. Voice message feature"], correct: "B", explanation: "TalkBack is Google's screen reader: single tap selects (reads), double-tap activates." },
+        { id: "q3_5", text: "Why is contentDescription important in the Woof app?", options: ["A. Determines image file", "B. Provides text description for accessibility services like TalkBack", "C. Sets tooltip", "D. Controls image scaling"], correct: "B", explanation: "contentDescription gives accessibility services text to read aloud; null only for decorative images." },
+        { id: "q3_6", text: "What is Switch Access designed for?", options: ["A. Visual impairments", "B. Voice commands", "C. Users with limited dexterity/navigation using physical switches", "D. Testing navigation flows"], correct: "C", explanation: "Switch Access helps users with limited dexterity use switches instead of touchscreen." },
+        { id: "q3_7", text: "Minimum recommended touch target size for interactive elements?", options: ["A. 24dp x 24dp", "B. 48dp x 48dp", "C. 64dp x 64dp", "D. 32dp x 32dp"], correct: "B", explanation: "Material Design minimum touch target: 48dp × 48dp. IconButton applies this via minimumTouchTargetSize()." },
+        { id: "q3_8", text: "Purpose of Scaffold in Jetpack Compose?", options: ["A. Scrollable list", "B. Provides layout structure with slots (TopAppBar, BottomBar) and supplies innerPadding", "C. Manage navigation", "D. Apply color theme"], correct: "B", explanation: "Scaffold gives standard structure with slots and innerPadding to avoid content behind bars." },
+        { id: "q3_9", text: "What is the role of Spacer composable?", options: ["A. Invisible clickable area", "B. Adds empty space between components", "C. Centers column", "D. Creates horizontal divider"], correct: "B", explanation: "Spacer adds fixed amount of visual space, e.g., Spacer(modifier = Modifier.height(16.dp))." },
+        { id: "q3_10", text: "With verticalArrangement = Arrangement.Center on a Column, where does content appear?", options: ["A. Top", "B. Bottom", "C. Vertical centre of available space", "D. Spread evenly"], correct: "C", explanation: "Arrangement.Center places children in the middle of the Column's vertical space." }
+    ];
+
+    // Question 4 Data (15 items)
+    const q4Data = [
+        { id: "q4_1", text: "Order of lifecycle methods on first app open?", options: ["A. onStart → onCreate → onResume", "B. onCreate → onResume → onStart", "C. onCreate → onStart → onResume", "D. onResume → onStart → onCreate"], correct: "C", explanation: "onCreate → onStart → onResume." },
+        { id: "q4_2", text: "Which methods are called when user presses Home button?", options: ["A. onStop → onDestroy", "B. onPause → onStop", "C. onPause only", "D. onCreate → onStart"], correct: "B", explanation: "Home: onPause() → onStop(); activity not destroyed." },
+        { id: "q4_3", text: "Difference between Log.d() and Log.e()?", options: ["A. Log.d logs to file, Log.e displays to user", "B. Log.d = debug messages; Log.e = errors/critical failures", "C. Log.d for UI, Log.e for network", "D. Same"], correct: "B", explanation: "Log.d Debug, Log.e Error (highest priority)." },
+        { id: "q4_4", text: "What happens to Activity data on rotation and how to fix?", options: ["A. Nothing changes automatically", "B. Activity destroyed/recreated; fix: rememberSaveable", "C. Activity pauses, data kept", "D. ViewModel also lost; fix: remember"], correct: "B", explanation: "Configuration change destroys & recreates Activity; rememberSaveable persists data." },
+        { id: "q4_5", text: "Which lifecycle method only called when returning from STOPPED state (not first launch)?", options: ["A. onCreate()", "B. onStart()", "C. onRestart()", "D. onResume()"], correct: "C", explanation: "onRestart() is called only when activity restarts from stopped state. Not on first creation." },
+        { id: "q4_6", text: "Main advantage of ViewModel?", options: ["A. Sync to cloud", "B. Survives configuration changes (survives activity recreation)", "C. Share across apps", "D. Auto-save to storage"], correct: "B", explanation: "ViewModel retains data across rotation and other config changes." },
+        { id: "q4_7", text: "Purpose of backing property pattern (_uiState + uiState) in ViewModel?", options: ["A. Faster caching", "B. Allow UI to modify state directly", "C. Restrict modification to ViewModel (private mutable) and expose read-only", "D. Backup copy"], correct: "C", explanation: "Backing property exposes read-only StateFlow, while mutable version stays private inside ViewModel." },
+        { id: "q4_8", text: "Unidirectional Data Flow (UDF) direction?", options: ["A. State flows UP, events DOWN", "B. State flows DOWN (ViewModel → UI), events flow UP (UI → ViewModel)", "C. Both down", "D. Both up"], correct: "B", explanation: "UDF: state down, events up." },
+        { id: "q4_9", text: "How to collect ViewModel state in Compose?", options: ["A. gameViewModel.uiState.observe()", "B. val state by gameViewModel.uiState.collectAsState()", "C. gameViewModel.uiState.getValue()", "D. remember { gameViewModel.uiState }"], correct: "B", explanation: "collectAsState() converts StateFlow to Compose State, recomposes on changes." },
+        { id: "q4_10", text: "Three main parts of Jetpack Navigation component?", options: ["A. NavActivity, NavFragment, NavRoute", "B. NavController, NavGraph, NavHost", "C. NavManager, NavStack, NavScreen", "D. NavCompose, NavHost, NavIntent"], correct: "B", explanation: "NavController (back stack), NavGraph (routes), NavHost (destination container)." },
+        { id: "q4_11", text: "Purpose of startDestination in NavHost?", options: ["A. Back button screen", "B. Screen shown when app first opens", "C. Cannot navigate away", "D. Transition animation"], correct: "B", explanation: "startDestination defines the first screen displayed." },
+        { id: "q4_12", text: "Difference between navigate() and navigateUp()?", options: ["A. navigate() goes back; navigateUp() forward", "B. navigate() adds to back stack; navigateUp() removes current screen and goes back", "C. same", "D. navigate external, navigateUp internal"], correct: "B", explanation: "navigate pushes new screen; navigateUp pops current screen, returning to previous." },
+        { id: "q4_13", text: "Why pass navigation logic as lambdas rather than NavController directly?", options: ["A. Lambdas are faster", "B. Keeps navigation centralised, screens reusable/testable", "C. NavController cannot be passed", "D. Lambdas auto handle back stack"], correct: "B", explanation: "Lambdas decouple navigation logic, improve reusability and testability." },
+        { id: "q4_14", text: "popBackStack(CupcakeScreen.Start.name, inclusive = false) does what?", options: ["A. Removes all including Start", "B. Removes all screens above Start, returns to Start, keeps Start in stack", "C. Navigates forward to Start", "D. Clears entire stack"], correct: "B", explanation: "inclusive=false removes screens above target but keeps target in back stack." },
+        { id: "q4_15", text: "Which component used to share text with another app (Gmail/WhatsApp)?", options: ["A. NavController.navigate special", "B. Intent with ACTION_SEND and type text/plain", "C. BroadcastReceiver", "D. ContentProvider"], correct: "B", explanation: "ACTION_SEND intent with extra text, showing system share sheet." }
+    ];
+
+    // Storage for answers and feedback visibility
+    let userSelections = {};
+    let checkedStatus = {};
+
+    function renderQuestions(containerId, questions, prefix) {
+        const container = document.getElementById(containerId);
+        if (!container) return;
+        let html = '';
+        questions.forEach((q, idx) => {
+            const qid = q.id;
+            const saved = userSelections[qid] || '';
+            html += `<div class="question" id="card-${qid}">
+                        <div class="q-text">${idx+1}. ${q.text}</div>
+                        <div class="options">`;
+            q.options.forEach(opt => {
+                const letter = opt.charAt(0);
+                const checkedAttr = (saved === letter) ? 'checked' : '';
+                html += `<label class="option"><input type="radio" name="${qid}" value="${letter}" ${checkedAttr}> ${opt}</label>`;
+            });
+            html += `</div><button class="check-single" data-qid="${qid}" data-correct="${q.correct}" data-exp="${q.explanation.replace(/"/g, '&quot;')}">🔍 Check Answer</button>
+                     <div id="fb-${qid}" class="feedback"></div></div>`;
+        });
+        container.innerHTML = html;
+        // Attach radio listeners and button listeners
+        questions.forEach(q => {
+            const radios = document.querySelectorAll(`input[name="${q.id}"]`);
+            radios.forEach(radio => {
+                radio.addEventListener('change', (e) => {
+                    userSelections[q.id] = e.target.value;
+                    const fbDiv = document.getElementById(`fb-${q.id}`);
+                    if (fbDiv) fbDiv.style.display = 'none';
+                    checkedStatus[q.id] = false;
+                });
+            });
+        });
+        document.querySelectorAll(`#${containerId} .check-single`).forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                const qid = btn.getAttribute('data-qid');
+                const correct = btn.getAttribute('data-correct');
+                const exp = btn.getAttribute('data-exp');
+                const selected = userSelections[qid];
+                const fb = document.getElementById(`fb-${qid}`);
+                if (!selected) {
+                    fb.innerHTML = `⚠️ No answer selected. Correct: ${correct}. ${exp}`;
+                    fb.className = 'feedback incorrect';
+                } else if (selected === correct) {
+                    fb.innerHTML = `✅ Correct! ${exp}`;
+                    fb.className = 'feedback correct';
+                } else {
+                    fb.innerHTML = `❌ Incorrect (your choice: ${selected}). Correct: ${correct}. ${exp}`;
+                    fb.className = 'feedback incorrect';
+                }
+                fb.style.display = 'block';
+                checkedStatus[qid] = true;
+            });
+        });
+    }
+
+    function evaluateAllRemainingAndSummary() {
+        const allQs = [...q1Data, ...q3Data, ...q4Data];
+        let correctCount = 0;
+        allQs.forEach(q => {
+            const selected = userSelections[q.id];
+            const fb = document.getElementById(`fb-${q.id}`);
+            if (fb && !checkedStatus[q.id]) {
+                if (!selected) {
+                    fb.innerHTML = `⚠️ No answer selected. Correct: ${q.correct}. ${q.explanation}`;
+                    fb.className = 'feedback incorrect';
+                } else if (selected === q.correct) {
+                    fb.innerHTML = `✅ Correct! ${q.explanation}`;
+                    fb.className = 'feedback correct';
+                    correctCount++;
+                } else {
+                    fb.innerHTML = `❌ Incorrect (${selected}). Correct: ${q.correct}. ${q.explanation}`;
+                    fb.className = 'feedback incorrect';
+                }
+                fb.style.display = 'block';
+                checkedStatus[q.id] = true;
+            } else if (checkedStatus[q.id] && userSelections[q.id] === q.correct) {
+                correctCount++;
+            }
+        });
+        const total = allQs.length;
+        document.getElementById('summaryArea').innerHTML = `📈 MCQ Summary: ${correctCount}/${total} correct for Q1, Q3, Q4. Check coding & logic errors separately. Use detailed feedback above.`;
+        document.getElementById('summaryArea').style.display = 'block';
+    }
+
+    function resetAll() {
+        userSelections = {};
+        checkedStatus = {};
+        renderQuestions('q1-container', q1Data, 'q1');
+        renderQuestions('q3-container', q3Data, 'q3');
+        renderQuestions('q4-container', q4Data, 'q4');
+        document.getElementById('codingAnswer').value = '';
+        document.getElementById('codingFeedback').style.display = 'none';
+        document.getElementById('logicErrorsAnswer').value = '';
+        document.getElementById('logicFeedback').style.display = 'none';
+        document.getElementById('summaryArea').style.display = 'none';
+    }
+
+    // coding validation adhering to memo (2.1-2.4)
+    function validateCoding() {
+        const code = document.getElementById('codingAnswer').value;
+        const hasDataClass = code.includes('data class StudentResult');
+        const hasList = code.includes('sampleResults') || (code.includes('listOf(') && code.includes('StudentResult'));
+        const hasResultItem = code.includes('ResultItem') && code.includes('@Composable');
+        const hasLazy = code.includes('LazyColumn');
+        const hasItems = code.includes('items(');
+        const hasSetContent = code.includes('setContent');
+        const hasHeading = code.includes('Text') && (code.includes('Student Results') || code.includes('heading'));
+        let valid = hasDataClass && hasList && hasResultItem && hasLazy && hasItems && hasSetContent && hasHeading;
+        const fb = document.getElementById('codingFeedback');
+        if (valid) {
+            fb.innerHTML = '✅ Excellent! Your code includes data class, sampleResults list, ResultItem, LazyColumn inside ResultList, and MainActivity with heading. Matches memo (2.1–2.4).';
+            fb.className = 'feedback correct';
+        } else {
+            let missing = [];
+            if (!hasDataClass) missing.push('data class StudentResult');
+            if (!hasList) missing.push('sampleResults list (5 items)');
+            if (!hasResultItem) missing.push('ResultItem composable');
+            if (!hasLazy) missing.push('LazyColumn');
+            if (!hasItems) missing.push('items() inside LazyColumn');
+            if (!hasSetContent) missing.push('setContent in onCreate');
+            if (!hasHeading) missing.push('heading (Text) above list');
+            fb.innerHTML = `⚠️ Missing/incorrect: ${missing.join(', ')}. Refer to memo: data class, sample list (2.1), ResultItem (2.2), ResultList with LazyColumn (2.3), MainActivity with heading (2.4).`;
+            fb.className = 'feedback incorrect';
+        }
+        fb.style.display = 'block';
+    }
+
+    // logic errors check (memo-style)
+    function checkLogicErrors() {
+        const answer = document.getElementById('logicErrorsAnswer').value.toLowerCase();
+        const error1 = answer.includes('radio') && answer.includes('mmd316d') && answer.includes('mob');
+        const error2 = answer.includes('navigate') && (answer.includes('subject/') || answer.includes('route mismatch') || answer.includes('prefix'));
+        const fb = document.getElementById('logicFeedback');
+        if (error1 && error2) {
+            fb.innerHTML = '✅ Correct: Error 1 = MOB216D radio sets MMD316D (user cannot select MOB). Error 2 = navigation uses raw subject code but routes need "subject/" prefix → navigation fails. Great!';
+            fb.className = 'feedback correct';
+        } else {
+            fb.innerHTML = '⚠️ Not fully identified. The two intentional errors: (1) MOB216D RadioButton onClick = { selectedSubject = "MMD316D" } → never selects MOB. (2) Button navigates with selectedSubject but routes require "subject/" prefix → navigation mismatch.';
+            fb.className = 'feedback incorrect';
+        }
+        fb.style.display = 'block';
+    }
+
+    // init
+    renderQuestions('q1-container', q1Data, 'q1');
+    renderQuestions('q3-container', q3Data, 'q3');
+    renderQuestions('q4-container', q4Data, 'q4');
+    document.getElementById('checkAllBtn').addEventListener('click', evaluateAllRemainingAndSummary);
+    document.getElementById('resetBtn').addEventListener('click', resetAll);
+    document.getElementById('checkCodingBtn').addEventListener('click', validateCoding);
+    document.getElementById('checkLogicBtn').addEventListener('click', checkLogicErrors);
+</script>
+</body>
+</html>

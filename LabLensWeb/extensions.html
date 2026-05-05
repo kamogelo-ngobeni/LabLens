@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>LabLens — Extensions</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div id="header-placeholder"></div>
+  <main class="main">
+    <section id="page-extensions">
+      <div class="banner">
+        <div><h1><i class="fa fa-hourglass-half" style="margin-right:10px"></i> Extension Management</h1><p>Handle booking time extension requests</p></div>
+        <div class="banner-right"><button class="btn btn-outline" onclick="openAddExt()"><i class="fa fa-plus"></i> Request Extension</button></div>
+      </div>
+      <div class="card">
+        <table class="tbl"><thead><tr><th>ID</th><th>Booking</th><th>Student</th><th>Minutes</th><th>Status</th><th>Approval Time</th><th>Actions</th></tr></thead>
+        <tbody id="ex-tb"></tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+  <div id="modals-placeholder"></div>
+  <div id="footer-placeholder"></div>
+  <script src="script.js"></script>
+  <script>loadFragment('header-placeholder','header.html');loadFragment('footer-placeholder','footer.html');loadFragment('modals-placeholder','modals.html');document.addEventListener('DOMContentLoaded',()=>{renderExts(DB.extensions);updateBadges();});</script>
+</body>
+</html>

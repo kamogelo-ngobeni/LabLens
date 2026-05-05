@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>LabLens — Labs</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div id="header-placeholder"></div>
+  <main class="main">
+    <section id="page-labs">
+      <div class="banner">
+        <div><h1><i class="fa fa-building" style="margin-right:10px"></i> Laboratory Management</h1><p>Manage computer labs and their capacities</p></div>
+        <div class="banner-right"><button class="btn btn-outline" onclick="openModal('m-lab')"><i class="fa fa-plus"></i> Add New Lab</button></div>
+      </div>
+      <div class="card">
+        <table class="tbl"><thead><tr><th>ID</th><th>Name</th><th>Description</th><th>PCs</th><th>Actions</th></tr></thead>
+        <tbody id="l-tb"></tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+  <div id="modals-placeholder"></div>
+  <div id="footer-placeholder"></div>
+  <script src="script.js"></script>
+  <script>loadFragment('header-placeholder','header.html');loadFragment('footer-placeholder','footer.html');loadFragment('modals-placeholder','modals.html');document.addEventListener('DOMContentLoaded',()=>{renderLabs(DB.labs);updateBadges();});</script>
+</body>
+</html>
